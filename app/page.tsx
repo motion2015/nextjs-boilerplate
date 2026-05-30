@@ -1,8 +1,10 @@
-export default function Home() {
-  return (
-    <div className="flex min-h-screen justify-center items-center">
-      <h1>안녕하세요. 프로그래밍의 세계로 오신 것을 환영합니다.!</h1>
-      
-    </div>
-  );
+import DiaryApp from "./components/DiaryApp";
+import { todayYyyyMMdd } from "@/lib/date";
+import { listDiaryDates } from "@/lib/diary-storage";
+
+export default async function Home() {
+  const initialDate = todayYyyyMMdd();
+  const initialDates = await listDiaryDates();
+
+  return <DiaryApp initialDate={initialDate} initialDates={initialDates} />;
 }
